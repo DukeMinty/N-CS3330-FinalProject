@@ -1,4 +1,4 @@
-package edu.mu.maven.users.model;
+package edu.mu.maven.users.controller;
 
 import edu.mu.maven.users.Shopper;
 import edu.mu.maven.users.view.ShopperView;
