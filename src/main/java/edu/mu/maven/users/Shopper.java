@@ -32,5 +32,10 @@ public class Shopper extends Users {
 	public void setShoppingCart(ArrayList<String> shoppingCart) {
 		this.shoppingCart = shoppingCart;
 	}
+
+	@Override
+	public String toString() {
+		return "Shopper [accountBalance=" + accountBalance + ", shoppingCart=" + shoppingCart + "]";
+	}
     
 }
