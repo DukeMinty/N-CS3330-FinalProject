@@ -13,12 +13,20 @@ public class ShopperController {
 		this.view=view;
 	}
 	
+	public String getShopperUsername() {
+		return model.getUsername();
+	}
+	
 	public void setShopperUsername(String username) {
 		model.setUsername(username);
 	}
 	
-	public String getShopperUsername() {
-		return model.getUsername();
+	public double getShopperBalance() {
+		return model.getAccountBalance();
+	}
+	
+	public void addToShopperBalance(double addition) {
+		model.setAccountBalance(model.getAccountBalance() + addition);
 	}
 	
 	public void updateView() {
