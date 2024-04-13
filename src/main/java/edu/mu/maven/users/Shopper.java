@@ -2,6 +2,13 @@ package edu.mu.maven.users;
 
 import java.util.ArrayList;
 
+//Created by Aaron Trebus
+
+//Class lays out the paramaters for Shopper objects
+
+//Includes the username and password fields (will change if I can find a better way to format)
+//Also includes the shopping cart that can have items added to it
+
 public class Shopper extends Users {
     private double accountBalance;
     
@@ -27,10 +34,6 @@ public class Shopper extends Users {
 
 	public ArrayList<String> getShoppingCart() {
 		return shoppingCart;
-	}
-
-	public void setShoppingCart(ArrayList<String> shoppingCart) {
-		this.shoppingCart = shoppingCart;
 	}
 
 	@Override

@@ -12,6 +12,10 @@ import edu.mu.maven.users.controller.ShopperController;
 import edu.mu.maven.users.view.AdminView;
 import edu.mu.maven.users.view.ShopperView;
 
+//Created by Aaron Trebus
+
+//Class displays the Login window is user chose it on InitialScreen
+
 public class Login {
 	
 	ShopperController shopperController;

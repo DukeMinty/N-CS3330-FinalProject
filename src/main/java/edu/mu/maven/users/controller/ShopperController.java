@@ -1,7 +1,13 @@
 package edu.mu.maven.users.controller;
 
+import java.util.ArrayList;
 import edu.mu.maven.users.Shopper;
 import edu.mu.maven.users.view.ShopperView;
+
+//Created by Aaron Trebus
+//Class is the controller for Shopper objects
+
+//Feel free to add more as necessary for the project's growth
 
 public class ShopperController {
 	
@@ -31,6 +37,11 @@ public class ShopperController {
 	
 	public void addToShopperBalance(double addition) {
 		model.setAccountBalance(model.getAccountBalance() + addition);
+	}
+	
+	//Change to type of Item when it is made
+	public ArrayList<String> getShopperCart() {
+		return model.getShoppingCart();
 	}
 	
 	public void updateView() {

@@ -7,6 +7,17 @@ import edu.mu.maven.users.Shopper;
 import edu.mu.maven.users.controller.ShopperController;
 import edu.mu.maven.users.view.ShopperView;
 
+//Created by Aaron Trebus
+
+//Class is the window that allows the input for creation of a new Shopper if the user chose it on InitialScreen
+
+//Prompt the user for their desired username, the password they want, and to repeat the password
+
+//Accounts for issues such as:
+//Having a necessary password length
+//Ensuring a Shopper with the same name as another cannot be made
+//Ensuring error handling if some part of object creation and list addition went wrong
+
 public class Register {
 	
 	ShopperController controller;
