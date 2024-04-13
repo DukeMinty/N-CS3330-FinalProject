@@ -14,7 +14,7 @@ import edu.mu.maven.users.view.ShopperView;
 
 //Created by Aaron Trebus
 
-//Class displays the Login window is user chose it on InitialScreen
+//Class displays the Login window after the user choses it on InitialScreen
 
 public class Login {
 	
