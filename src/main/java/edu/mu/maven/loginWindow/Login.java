@@ -3,6 +3,8 @@ package edu.mu.maven.loginWindow;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import edu.mu.maven.userOptions.AdminOptions;
+import edu.mu.maven.userOptions.ShopperOptions;
 import edu.mu.maven.users.Admin;
 import edu.mu.maven.users.Shopper;
 import edu.mu.maven.users.controller.AdminController;

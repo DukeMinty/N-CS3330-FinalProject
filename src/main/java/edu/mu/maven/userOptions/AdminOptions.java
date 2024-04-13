@@ -1,4 +1,4 @@
-package edu.mu.maven.loginWindow;
+package edu.mu.maven.userOptions;
 
 import edu.mu.maven.users.Admin;
 import edu.mu.maven.users.controller.ShopperController;

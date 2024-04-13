@@ -1,6 +1,10 @@
 package edu.mu.maven.users;
 
-public class Users {
+//Created by Aaron Trebus
+
+//Class is the default abstract Users type that Admin and Shopper will extend
+
+public abstract class Users {
 	
 	private String username;
 	private String password;
