@@ -49,7 +49,8 @@ public class InitialScreen {
         }
         switch(userMenuInput) {
         case 1:
-        	
+        	new Register(shoppers);
+        	menu();
         case 2:
         	
         case 3:
