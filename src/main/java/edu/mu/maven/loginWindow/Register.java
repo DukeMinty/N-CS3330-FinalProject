@@ -4,19 +4,27 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import edu.mu.maven.users.Shopper;
+import edu.mu.maven.users.controller.ShopperController;
+import edu.mu.maven.users.view.ShopperView;
 
 public class Register {
 	
-	Scanner scanner = new Scanner(System.in);
-	String regUsername;
-	String regPassword;
-	String conPassword;
+	ShopperController controller;
+	ShopperView view;
 	
 	public Register(ArrayList<Shopper> shopperList) {
+		
+		Scanner scanner = new Scanner(System.in);
+		
 		System.out.println("Thank you for choosing to make an account with World Market!\n");
 		System.out.println("All users start with a $20 gratuity account balance, on us!\n\n");
 		
 		while(true) {
+			
+			String regUsername = "";
+			String regPassword = "";
+			String conPassword = "";
+			
 			System.out.println("Enter username:\n");
 			regUsername = scanner.nextLine();
 			
@@ -25,7 +33,7 @@ public class Register {
 			
 			System.out.println("Confirm password:\n");
 			conPassword = scanner.nextLine();
-			
+
 			if(!regPassword.equals(conPassword)) {
 				System.out.println("Passwords do not match.\n");
 				continue;
@@ -34,17 +42,32 @@ public class Register {
 				System.out.println("Password choice is not safe");
 				continue;
 			}
+			else if(checkUsernameRepeat(shopperList, regUsername) == true) {
+				System.out.println("Username is already taken.\n");
+				continue;
+			}
 			else {
+				try {
+					shopperList.add(new Shopper(regUsername, regPassword, 20));
+				}catch(Exception e) {
+					System.out.println("So sorry! Something went wrong adding your account!");
+				}
 				break;
 			}
 
 		}
-		try {
-			shopperList.add(new Shopper(regUsername, regPassword, 20));
-		}catch(Exception e) {
-			System.out.println("So sorry! Something went wrong adding your account!");
+		//Close the scanner
+		scanner.close();
+	}
+	
+	public boolean checkUsernameRepeat(ArrayList<Shopper> shopperList, String regUsername) {
+		for(Shopper shopper : shopperList) {
+			controller = new ShopperController(shopper, view);
+			if(regUsername.equals(controller.getShopperUsername())) {
+				return true;
+			}
 		}
-
+		return false;
 	}
 
 }

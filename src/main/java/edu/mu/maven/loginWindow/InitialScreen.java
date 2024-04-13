@@ -18,18 +18,21 @@ public class InitialScreen {
 	private ArrayList<Admin> admins;
 	private int initializerLoopCheckFlag = 0;
 	
-	Scanner scanner = new Scanner(System.in);
-	
 	public InitialScreen() {
+		//Loads all users from their files, will only run once to save memory
 		if(initializerLoopCheckFlag == 0) {
 			loadShoppersFromFile();
 			loadAdminsFromFile();
 			initializerLoopCheckFlag++;
 		}
+		//Displays menu and gets user input
 		menu();
 	}
 	
 	public void menu() {
+		
+		Scanner scanner = new Scanner(System.in);
+		
 		boolean menuLoop = true;
 		int userMenuInput = 0;
 		
@@ -47,14 +50,18 @@ public class InitialScreen {
                 System.err.println("Invalid input");
             }
         }
+        
+        //Closing scanner class
+        scanner.close();
+        
+        //Interpreting user input to move them to another class, or end the program
         switch(userMenuInput) {
         case 1:
         	new Register(shoppers);
         	menu();
         case 2:
-        	
+        	new Login(shoppers, admins);
         case 3:
-        	scanner.close();
         	System.exit(0);
         }
 	}

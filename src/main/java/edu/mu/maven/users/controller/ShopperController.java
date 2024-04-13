@@ -21,6 +21,10 @@ public class ShopperController {
 		model.setUsername(username);
 	}
 	
+	public String getShopperPassword() {
+		return model.getPassword();
+	}
+	
 	public double getShopperBalance() {
 		return model.getAccountBalance();
 	}
