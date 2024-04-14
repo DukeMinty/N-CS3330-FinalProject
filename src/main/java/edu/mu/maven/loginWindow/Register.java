@@ -1,5 +1,7 @@
 package edu.mu.maven.loginWindow;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -23,9 +25,7 @@ public class Register {
 	ShopperController controller;
 	ShopperView view;
 	
-	public Register(ArrayList<Shopper> shopperList) {
-		
-		Scanner scanner = new Scanner(System.in);
+	public Register(ArrayList<Shopper> shopperList, String filePath, Scanner scanner) {
 		
 		System.out.println("Thank you for choosing to make an account with World Market!\n");
 		System.out.println("All users start with a $20 gratuity account balance, on us!\n\n");
@@ -36,13 +36,13 @@ public class Register {
 			String regPassword = "";
 			String conPassword = "";
 			
-			System.out.println("Enter username:\n");
+			System.out.println("Enter username:");
 			regUsername = scanner.nextLine();
 			
-			System.out.println("Enter password (must be at least 6 characters long):\n");
+			System.out.println("Enter password (must be at least 6 characters long):");
 			regPassword = scanner.nextLine();
 			
-			System.out.println("Confirm password:\n");
+			System.out.println("Confirm password:");
 			conPassword = scanner.nextLine();
 
 			if(!regPassword.equals(conPassword)) {
@@ -50,7 +50,7 @@ public class Register {
 				continue;
 			}
 			else if(regPassword.length() <= 6) {
-				System.out.println("Password choice is not safe");
+				System.out.println("Password choice is not safe\n");
 				continue;
 			}
 			else if(checkUsernameRepeat(shopperList, regUsername) == true) {
@@ -59,16 +59,21 @@ public class Register {
 			}
 			else {
 				try {
+					FileWriter accountInfoWriter = new FileWriter(filePath);
+		            BufferedWriter bufferedWriter = new BufferedWriter(accountInfoWriter);
 					shopperList.add(new Shopper(regUsername, regPassword, 20));
+		            for (Shopper shopper : shopperList) {
+		                bufferedWriter.write(shopper.getUsername()+","+shopper.getPassword()+","+shopper.getAccountBalance());
+		                bufferedWriter.newLine(); // Write a new line after each object
+		            }
+		            bufferedWriter.close();
 				}catch(Exception e) {
-					System.out.println("So sorry! Something went wrong adding your account!");
+					System.out.println("So sorry! Something went wrong adding your account!\n");
 				}
 				break;
 			}
 
 		}
-		//Close the scanner
-		scanner.close();
 	}
 	
 	public boolean checkUsernameRepeat(ArrayList<Shopper> shopperList, String regUsername) {

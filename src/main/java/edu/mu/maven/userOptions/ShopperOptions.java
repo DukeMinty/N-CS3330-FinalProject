@@ -11,7 +11,7 @@ public class ShopperOptions {
 	ShopperView view;
 	
 	public ShopperOptions(Shopper shopper) {
-		
+		System.out.println("hi");
 	}
 
 }

@@ -24,22 +24,18 @@ public class Login {
 	AdminController adminController;
 	AdminView adminView;
 	
-	public Login(ArrayList<Shopper> shopperList, ArrayList<Admin> adminList) {
-		
-		Scanner scanner = new Scanner(System.in);
+	public Login(ArrayList<Shopper> shopperList, ArrayList<Admin> adminList, Scanner scanner) {
 		
 		while(true) {
 			
 			String logUsername = "";
 			String logPassword = "";
 			
-			System.out.println("Enter username:\n");
+			System.out.println("Enter username:");
 			logUsername = scanner.nextLine();
 			
-			System.out.println("Enter password:\n");
+			System.out.println("Enter password:");
 			logPassword = scanner.nextLine();
-			
-			scanner.close();
 			
 			Shopper loggedInShopper = checkShopperExistence(logUsername, logPassword, shopperList);
 			if(loggedInShopper != null) {
@@ -53,21 +49,18 @@ public class Login {
 				break;
 			}
 			
-			System.out.println("User not found, would you like to try again? Y or N\n");
-			
-			Scanner repeatScanner = new Scanner(System.in);
-			String userChoice = repeatScanner.nextLine().toUpperCase();
-			if(userChoice == "Y") {
-				repeatScanner.close();
+			System.out.println("User not found, would you like to try again? Y or N");
+
+			String userChoice = scanner.nextLine().toUpperCase();
+			if(userChoice.equals("Y")) {
 				continue;
 			}
 			else {
-				repeatScanner.close();
 				break;
 			}
 			
 
-		}	
+		}
 	}
 	
 	//Checks for an existing shopper in the database, returns null if non existant

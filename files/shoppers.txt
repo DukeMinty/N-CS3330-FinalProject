@@ -1,0 +1,2 @@
+shopper,password,30.0
+aaron,password,20.0

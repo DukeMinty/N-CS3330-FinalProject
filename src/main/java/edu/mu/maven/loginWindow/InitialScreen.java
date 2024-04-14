@@ -14,11 +14,11 @@ public class InitialScreen {
 	final String shopperInfoPath = "files/shoppers.txt";
 	final String adminInfoPath = "files/admins.txt";
 	
-	private ArrayList<Shopper> shoppers;
-	private ArrayList<Admin> admins;
+	private ArrayList<Shopper> shoppers = new ArrayList<>();
+	private ArrayList<Admin> admins = new ArrayList<>();
 	private int initializerLoopCheckFlag = 0;
 	
-	public InitialScreen() {
+	public InitialScreen(Scanner scanner) {
 		//Loads all users from their files, will only run once to save memory
 		if(initializerLoopCheckFlag == 0) {
 			loadShoppersFromFile();
@@ -26,17 +26,15 @@ public class InitialScreen {
 			initializerLoopCheckFlag++;
 		}
 		//Displays menu and gets user input
-		menu();
+		menu(scanner);
 	}
 	
-	public void menu() {
-		
-		Scanner scanner = new Scanner(System.in);
+	public void menu(Scanner scanner) {
 		
 		boolean menuLoop = true;
 		int userMenuInput = 0;
 		
-		System.out.println("WORLD MARKET!!!!\n\n");
+		System.out.println("WORLD MARKET!!!!\n");
 		System.out.println("1. Register\n2. Login\n3. Exit");
         while (menuLoop) {
             try {
@@ -51,16 +49,13 @@ public class InitialScreen {
             }
         }
         
-        //Closing scanner class
-        scanner.close();
-        
         //Interpreting user input to move them to another class, or end the program
         switch(userMenuInput) {
         case 1:
-        	new Register(shoppers);
-        	menu();
+        	new Register(shoppers, shopperInfoPath, scanner);
+        	menu(scanner);
         case 2:
-        	new Login(shoppers, admins);
+        	new Login(shoppers, admins, scanner);
         case 3:
         	System.exit(0);
         }
@@ -85,7 +80,7 @@ public class InitialScreen {
                 	}
 
                 } else {
-                    System.out.println("Skipping line due to incorrect format: " + line);
+                    System.out.println("Skipping line due to incorrect format");
                 }
             }
         } catch (IOException e) {
