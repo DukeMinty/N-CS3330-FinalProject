@@ -53,7 +53,7 @@ public class Register {
 				System.out.println("Password choice is not safe\n");
 				continue;
 			}
-			else if(checkUsernameRepeat(shopperList, regUsername) == true) {
+			else if(CheckUsernameRepeat(shopperList, regUsername) == true) {
 				System.out.println("Username is already taken.\n");
 				continue;
 			}
@@ -76,7 +76,7 @@ public class Register {
 		}
 	}
 	
-	public boolean checkUsernameRepeat(ArrayList<Shopper> shopperList, String regUsername) {
+	public boolean CheckUsernameRepeat(ArrayList<Shopper> shopperList, String regUsername) {
 		for(Shopper shopper : shopperList) {
 			controller = new ShopperController(shopper, view);
 			if(regUsername.equals(controller.getShopperUsername())) {

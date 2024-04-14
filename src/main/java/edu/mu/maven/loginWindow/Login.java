@@ -37,15 +37,15 @@ public class Login {
 			System.out.println("Enter password:");
 			logPassword = scanner.nextLine();
 			
-			Shopper loggedInShopper = checkShopperExistence(logUsername, logPassword, shopperList);
+			Shopper loggedInShopper = CheckShopperExistence(logUsername, logPassword, shopperList);
 			if(loggedInShopper != null) {
-				new ShopperOptions(loggedInShopper);
+				new ShopperOptions(loggedInShopper, scanner);
 				break;
 			}
 			
-			Admin loggedInAdmin = checkAdminExistence(logUsername, logPassword, adminList);
+			Admin loggedInAdmin = CheckAdminExistence(logUsername, logPassword, adminList);
 			if(loggedInAdmin != null) {
-				new AdminOptions(loggedInAdmin);
+				new AdminOptions(loggedInAdmin, scanner);
 				break;
 			}
 			
@@ -64,7 +64,7 @@ public class Login {
 	}
 	
 	//Checks for an existing shopper in the database, returns null if non existant
-	public Shopper checkShopperExistence(String logUsername, String logPassword, ArrayList<Shopper> shopperList) {
+	public Shopper CheckShopperExistence(String logUsername, String logPassword, ArrayList<Shopper> shopperList) {
 		
 		for(Shopper shopper : shopperList) {
 			shopperController = new ShopperController(shopper, shopperView);
@@ -75,7 +75,7 @@ public class Login {
 		return null;
 	}
 	
-	public Admin checkAdminExistence(String logUsername, String logPassword, ArrayList<Admin> adminList) {
+	public Admin CheckAdminExistence(String logUsername, String logPassword, ArrayList<Admin> adminList) {
 		for(Admin admin : adminList) {
 			adminController = new AdminController(admin, adminView);
 			if(logUsername.equals(adminController.getAdminUsername()) && logPassword.equals(adminController.getAdminPassword())) {

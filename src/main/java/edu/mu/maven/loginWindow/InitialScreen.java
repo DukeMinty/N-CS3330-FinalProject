@@ -21,15 +21,15 @@ public class InitialScreen {
 	public InitialScreen(Scanner scanner) {
 		//Loads all users from their files, will only run once to save memory
 		if(initializerLoopCheckFlag == 0) {
-			loadShoppersFromFile();
-			loadAdminsFromFile();
+			LoadShoppersFromFile();
+			LoadAdminsFromFile();
 			initializerLoopCheckFlag++;
 		}
 		//Displays menu and gets user input
-		menu(scanner);
+		UserMenu(scanner);
 	}
 	
-	public void menu(Scanner scanner) {
+	public void UserMenu(Scanner scanner) {
 		
 		boolean menuLoop = true;
 		int userMenuInput = 0;
@@ -53,7 +53,7 @@ public class InitialScreen {
         switch(userMenuInput) {
         case 1:
         	new Register(shoppers, shopperInfoPath, scanner);
-        	menu(scanner);
+        	UserMenu(scanner);
         case 2:
         	new Login(shoppers, admins, scanner);
         case 3:
@@ -61,7 +61,7 @@ public class InitialScreen {
         }
 	}
 	
-	public void loadShoppersFromFile(){
+	public void LoadShoppersFromFile(){
 		try (BufferedReader reader = new BufferedReader(new FileReader(shopperInfoPath))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -88,7 +88,7 @@ public class InitialScreen {
         }
 	}
 	
-	public void loadAdminsFromFile(){
+	public void LoadAdminsFromFile(){
 		try (BufferedReader reader = new BufferedReader(new FileReader(adminInfoPath))) {
             String line;
             while ((line = reader.readLine()) != null) {
