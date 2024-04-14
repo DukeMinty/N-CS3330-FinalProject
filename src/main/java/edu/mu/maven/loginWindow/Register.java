@@ -1,13 +1,7 @@
 package edu.mu.maven.loginWindow;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.util.ArrayList;
 import java.util.Scanner;
-
 import edu.mu.maven.users.Shopper;
-import edu.mu.maven.users.controller.ShopperController;
-import edu.mu.maven.users.view.ShopperView;
 
 //Created by Aaron Trebus
 
@@ -22,10 +16,7 @@ import edu.mu.maven.users.view.ShopperView;
 
 public class Register {
 	
-	ShopperController controller;
-	ShopperView view;
-	
-	public Register(ArrayList<Shopper> shopperList, String filePath, Scanner scanner) {
+	public Register(Scanner scanner, UserSourceManager manager) {
 		
 		System.out.println("Thank you for choosing to make an account with World Market!\n");
 		System.out.println("All users start with a $20 gratuity account balance, on us!\n\n");
@@ -35,13 +26,13 @@ public class Register {
 			String regUsername = "";
 			String regPassword = "";
 			String conPassword = "";
-			
+
 			System.out.println("Enter username:");
 			regUsername = scanner.nextLine();
-			
+
 			System.out.println("Enter password (must be at least 6 characters long):");
 			regPassword = scanner.nextLine();
-			
+
 			System.out.println("Confirm password:");
 			conPassword = scanner.nextLine();
 
@@ -49,41 +40,18 @@ public class Register {
 				System.out.println("Passwords do not match.\n");
 				continue;
 			}
-			else if(regPassword.length() <= 6) {
+			if(regPassword.length() < 6) {
 				System.out.println("Password choice is not safe\n");
 				continue;
 			}
-			else if(CheckUsernameRepeat(shopperList, regUsername) == true) {
+			if(manager.CheckUsernameRepeat(regUsername) == true) {
 				System.out.println("Username is already taken.\n");
 				continue;
 			}
-			else {
-				try {
-					FileWriter accountInfoWriter = new FileWriter(filePath);
-		            BufferedWriter bufferedWriter = new BufferedWriter(accountInfoWriter);
-					shopperList.add(new Shopper(regUsername, regPassword, 20));
-		            for (Shopper shopper : shopperList) {
-		                bufferedWriter.write(shopper.getUsername()+","+shopper.getPassword()+","+shopper.getAccountBalance());
-		                bufferedWriter.newLine(); // Write a new line after each object
-		            }
-		            bufferedWriter.close();
-				}catch(Exception e) {
-					System.out.println("So sorry! Something went wrong adding your account!\n");
-				}
-				break;
-			}
+			manager.AddToShopperList(new Shopper(regUsername, regPassword, 20));
+			manager.RefreshFile();
+			break;
 
 		}
 	}
-	
-	public boolean CheckUsernameRepeat(ArrayList<Shopper> shopperList, String regUsername) {
-		for(Shopper shopper : shopperList) {
-			controller = new ShopperController(shopper, view);
-			if(regUsername.equals(controller.getShopperUsername())) {
-				return true;
-			}
-		}
-		return false;
-	}
-
 }

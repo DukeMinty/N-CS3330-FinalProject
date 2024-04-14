@@ -40,5 +40,7 @@ public class Shopper extends Users {
 	public String toString() {
 		return "Shopper [accountBalance=" + accountBalance + ", shoppingCart=" + shoppingCart + "]";
 	}
+
+
     
 }

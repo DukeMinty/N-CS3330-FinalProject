@@ -1,16 +1,10 @@
 package edu.mu.maven.loginWindow;
 
-import java.util.ArrayList;
 import java.util.Scanner;
-
 import edu.mu.maven.userOptions.AdminOptions;
 import edu.mu.maven.userOptions.ShopperOptions;
 import edu.mu.maven.users.Admin;
 import edu.mu.maven.users.Shopper;
-import edu.mu.maven.users.controller.AdminController;
-import edu.mu.maven.users.controller.ShopperController;
-import edu.mu.maven.users.view.AdminView;
-import edu.mu.maven.users.view.ShopperView;
 
 //Created by Aaron Trebus
 
@@ -18,13 +12,7 @@ import edu.mu.maven.users.view.ShopperView;
 
 public class Login {
 	
-	ShopperController shopperController;
-	ShopperView shopperView;
-	
-	AdminController adminController;
-	AdminView adminView;
-	
-	public Login(ArrayList<Shopper> shopperList, ArrayList<Admin> adminList, Scanner scanner) {
+	public Login(Scanner scanner, UserSourceManager manager) {
 		
 		while(true) {
 			
@@ -37,15 +25,15 @@ public class Login {
 			System.out.println("Enter password:");
 			logPassword = scanner.nextLine();
 			
-			Shopper loggedInShopper = CheckShopperExistence(logUsername, logPassword, shopperList);
+			Shopper loggedInShopper = manager.CheckShopperExistence(logUsername, logPassword);
 			if(loggedInShopper != null) {
-				new ShopperOptions(loggedInShopper, scanner);
+				new ShopperOptions(loggedInShopper, scanner, manager);
 				break;
 			}
 			
-			Admin loggedInAdmin = CheckAdminExistence(logUsername, logPassword, adminList);
+			Admin loggedInAdmin = manager.CheckAdminExistence(logUsername, logPassword);
 			if(loggedInAdmin != null) {
-				new AdminOptions(loggedInAdmin, scanner);
+				new AdminOptions(loggedInAdmin, scanner, manager);
 				break;
 			}
 			
@@ -61,28 +49,6 @@ public class Login {
 			
 
 		}
-	}
-	
-	//Checks for an existing shopper in the database, returns null if non existant
-	public Shopper CheckShopperExistence(String logUsername, String logPassword, ArrayList<Shopper> shopperList) {
-		
-		for(Shopper shopper : shopperList) {
-			shopperController = new ShopperController(shopper, shopperView);
-			if(logUsername.equals(shopperController.getShopperUsername()) && logPassword.equals(shopperController.getShopperPassword())) {
-				return shopper;
-			}
-		}
-		return null;
-	}
-	
-	public Admin CheckAdminExistence(String logUsername, String logPassword, ArrayList<Admin> adminList) {
-		for(Admin admin : adminList) {
-			adminController = new AdminController(admin, adminView);
-			if(logUsername.equals(adminController.getAdminUsername()) && logPassword.equals(adminController.getAdminPassword())) {
-				return admin;
-			}
-		}
-		return null;
 	}
 
 }

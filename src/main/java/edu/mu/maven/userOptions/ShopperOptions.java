@@ -1,21 +1,20 @@
 package edu.mu.maven.userOptions;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import edu.mu.maven.loginWindow.InitialScreen;
-import edu.mu.maven.loginWindow.Login;
-import edu.mu.maven.loginWindow.Register;
+import edu.mu.maven.loginWindow.UserSourceManager;
 import edu.mu.maven.users.Shopper;
 import edu.mu.maven.users.controller.ShopperController;
 import edu.mu.maven.users.view.ShopperView;
 
 public class ShopperOptions {
 	
-	ShopperController controller;
-	ShopperView view;
-	
-	public ShopperOptions(Shopper shopper, Scanner scanner) {
-		controller = new ShopperController(shopper, view);
+	public ShopperOptions(Shopper shopper, Scanner scanner, UserSourceManager manager) {
+		
+		ShopperController controller = new ShopperController(shopper, new ShopperView());
+		
 		boolean menuLoop = true;
 		int userMenuInput = 0;
 		
@@ -36,15 +35,40 @@ public class ShopperOptions {
         }
         switch(userMenuInput) {
         case 1:
-    
+//        	new Shop(shopper, scanner);
         case 2:
-   
+        	ChangeUsername(controller,scanner,manager);
+        	new ShopperOptions(shopper, scanner, manager);
         case 3:
-        	
+        	AddToBalance(controller, scanner);
+        	new ShopperOptions(shopper,scanner,manager);
         case 4:
         	InitialScreen goBack = new InitialScreen(scanner);
         	goBack.UserMenu(scanner);
         }
+	}
+	public void ChangeUsername(ShopperController controller, Scanner scanner, UserSourceManager manager) {
+		System.out.println("Enter new username:");
+		String newUsername = scanner.nextLine();
+		controller.setShopperUsername(newUsername);
+		manager.RefreshFile();
+		System.out.println("Got it " + controller.getShopperUsername() + "!");
+	}
+	
+	public void AddToBalance(ShopperController controller, Scanner scanner) {
+    	System.out.println("How much would you like to add?");
+    	System.out.print("$");
+    	double amountAddition = 0;
+    	while(true) {
+    		try {
+    			amountAddition = scanner.nextDouble();
+    		}catch (InputMismatchException e) {
+    			System.out.println("Invalid input.");
+    			continue;
+    		}
+    		controller.addToShopperBalance(amountAddition);
+    		System.out.println("Success! Current balance is: $" + controller.getShopperBalance());
+    	}
 	}
 
 }
