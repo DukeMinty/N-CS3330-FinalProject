@@ -31,7 +31,7 @@ public class ShopperArraylistController {
 		model.removeShopper(shopper);
 	}
 	
-	public void LoadShoppersFromFile(){
+	public void loadShoppersFromFile(){
 		try (BufferedReader reader = new BufferedReader(new FileReader(shopperInfoPath))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -58,7 +58,7 @@ public class ShopperArraylistController {
         }
 	}
 	
-	public void RefreshSourceFile() {
+	public void refreshSourceFile() {
 		try {
 			FileWriter accountInfoWriter = new FileWriter(shopperInfoPath);
             BufferedWriter bufferedWriter = new BufferedWriter(accountInfoWriter);
