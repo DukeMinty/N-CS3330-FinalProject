@@ -22,11 +22,11 @@ public class Main {
 	
 	private static boolean initialized = false;
 	static Scanner scanner = new Scanner(System.in);
+	
+	static ShopperArraylistController shopperArrayController = null;
+	static AdminArraylistController adminArrayController = null;
 
 	public static void main(String[] args) {
-		
-		ShopperArraylistController shopperArrayController = null;
-		AdminArraylistController adminArrayController = null;
 		
 		if(!initialized) {
 			shopperArrayController = initializeShopperArraylistController();
@@ -48,6 +48,7 @@ public class Main {
 	        	break;
 	        case 3:
 	        	adminModel = AdminLogin.login(scanner, adminArrayController);
+	        	//This 
 	        	new AdminOptions(scanner, adminModel, shopperArrayController);
 	        case 4:
 	        	System.exit(0);
@@ -112,8 +113,8 @@ public class Main {
 	}
 	
     public static void callMain() {
-        String[] args = {}; // Empty array
-        main(args); // Call the main method with empty array
+        String[] args = {};
+        main(args);
     }
 
 }
