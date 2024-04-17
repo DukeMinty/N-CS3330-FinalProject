@@ -7,12 +7,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import edu.mu.maven.users.Admin;
-import edu.mu.maven.users.Shopper;
-import edu.mu.maven.users.controller.AdminController;
-import edu.mu.maven.users.controller.ShopperController;
-import edu.mu.maven.users.view.AdminView;
-import edu.mu.maven.users.view.ShopperView;
+import edu.mu.maven.controller.AdminController;
+import edu.mu.maven.controller.ShopperController;
+import edu.mu.maven.model.Admin;
+import edu.mu.maven.model.Shopper;
+import edu.mu.maven.view.AdminView;
+import edu.mu.maven.view.ShopperView;
 
 public class UserSourceManager {
 	

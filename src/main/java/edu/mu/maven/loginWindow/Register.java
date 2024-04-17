@@ -1,7 +1,8 @@
 package edu.mu.maven.loginWindow;
 
 import java.util.Scanner;
-import edu.mu.maven.users.Shopper;
+
+import edu.mu.maven.model.Shopper;
 
 //Created by Aaron Trebus
 

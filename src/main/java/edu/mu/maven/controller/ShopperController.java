@@ -1,8 +1,9 @@
-package edu.mu.maven.users.controller;
+package edu.mu.maven.controller;
 
 import java.util.ArrayList;
-import edu.mu.maven.users.Shopper;
-import edu.mu.maven.users.view.ShopperView;
+
+import edu.mu.maven.model.Shopper;
+import edu.mu.maven.view.ShopperView;
 
 //Created by Aaron Trebus
 //Class is the controller for Shopper objects

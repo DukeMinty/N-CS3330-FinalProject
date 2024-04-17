@@ -1,7 +1,7 @@
-package edu.mu.maven.users.controller;
+package edu.mu.maven.controller;
 
-import edu.mu.maven.users.Admin;
-import edu.mu.maven.users.view.AdminView;
+import edu.mu.maven.model.Admin;
+import edu.mu.maven.view.AdminView;
 
 //Created by Aaron Trebus
 //Class is the controller for Admin objects

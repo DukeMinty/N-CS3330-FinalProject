@@ -1,10 +1,11 @@
 package edu.mu.maven.loginWindow;
 
 import java.util.Scanner;
+
+import edu.mu.maven.model.Admin;
+import edu.mu.maven.model.Shopper;
 import edu.mu.maven.userOptions.AdminOptions;
 import edu.mu.maven.userOptions.ShopperOptions;
-import edu.mu.maven.users.Admin;
-import edu.mu.maven.users.Shopper;
 
 //Created by Aaron Trebus
 

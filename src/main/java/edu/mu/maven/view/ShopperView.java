@@ -1,6 +1,6 @@
-package edu.mu.maven.users.view;
+package edu.mu.maven.view;
 
-import edu.mu.maven.users.Shopper;
+import edu.mu.maven.model.Shopper;
 
 //Created by Aaron Trebus
 //Class is the view for Shopper objects

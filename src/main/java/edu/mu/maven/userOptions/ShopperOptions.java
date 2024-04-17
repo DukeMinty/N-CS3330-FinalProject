@@ -3,11 +3,11 @@ package edu.mu.maven.userOptions;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import edu.mu.maven.controller.ShopperController;
 import edu.mu.maven.loginWindow.InitialScreen;
 import edu.mu.maven.loginWindow.UserSourceManager;
-import edu.mu.maven.users.Shopper;
-import edu.mu.maven.users.controller.ShopperController;
-import edu.mu.maven.users.view.ShopperView;
+import edu.mu.maven.model.Shopper;
+import edu.mu.maven.view.ShopperView;
 
 public class ShopperOptions {
 	

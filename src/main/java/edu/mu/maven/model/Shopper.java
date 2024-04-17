@@ -1,4 +1,4 @@
-package edu.mu.maven.users;
+package edu.mu.maven.model;
 
 import java.util.ArrayList;
 
