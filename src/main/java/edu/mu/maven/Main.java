@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import edu.mu.maven.controller.AdminArraylistController;
 import edu.mu.maven.controller.ShopperArraylistController;
+import edu.mu.maven.controller.ShopperController;
 import edu.mu.maven.loginRegister.ShopperLogin;
 import edu.mu.maven.loginRegister.AdminLogin;
 import edu.mu.maven.loginRegister.Register;
@@ -15,6 +16,7 @@ import edu.mu.maven.userOptions.AdminOptions;
 import edu.mu.maven.userOptions.ShopperOptions;
 import edu.mu.maven.view.AdminArraylistView;
 import edu.mu.maven.view.ShopperArraylistView;
+import edu.mu.maven.view.ShopperView;
 
 public class Main {
 	
@@ -27,7 +29,8 @@ public class Main {
 		AdminArraylistController adminArrayController = null;
 		
 		if(!initialized) {
-			initialize(shopperArrayController, adminArrayController);
+			shopperArrayController = initializeShopperArraylistController();
+			adminArrayController = initializeAdminArraylistController();
 		}
 		
 		ShopperModel shopperModel = null;
@@ -55,21 +58,32 @@ public class Main {
 	        break;
 		}
 		
-		new ShopperOptions(scanner, shopperModel, shopperArrayController);
+		ShopperController shopperController = new ShopperController(shopperModel, new ShopperView());
+		
+		new ShopperOptions(scanner, shopperController, shopperArrayController);
+		
+		//This is where the call for the Shop itself will start
+		//new nameofshop(<whatever you need to pass in>)
 
 	}
 	
-	public static void initialize(ShopperArraylistController shopperArrayController, AdminArraylistController adminArrayController) {
+	public static ShopperArraylistController initializeShopperArraylistController() {
 		ShopperArraylistModel shopperArrayModel = new ShopperArraylistModel();
 		ShopperArraylistView shopperArrayView = new ShopperArraylistView();
-		shopperArrayController = new ShopperArraylistController(shopperArrayModel, shopperArrayView);
-		
-		AdminArraylistModel adminArrayModel = new AdminArraylistModel();
-		AdminArraylistView adminArrayView = new AdminArraylistView();
-		adminArrayController = new AdminArraylistController(adminArrayModel, adminArrayView);
+		ShopperArraylistController shopperArrayController = new ShopperArraylistController(shopperArrayModel, shopperArrayView);
 		
 		shopperArrayController.loadShoppersFromFile();
+		
+		return shopperArrayController;
+	}
+	public static AdminArraylistController initializeAdminArraylistController() {
+		AdminArraylistModel adminArrayModel = new AdminArraylistModel();
+		AdminArraylistView adminArrayView = new AdminArraylistView();
+		AdminArraylistController adminArrayController = new AdminArraylistController(adminArrayModel, adminArrayView);
+		
 		adminArrayController.loadAdminsFromFile();
+		
+		return adminArrayController;
 	}
 	
 	public static int initialMenuChoice(){

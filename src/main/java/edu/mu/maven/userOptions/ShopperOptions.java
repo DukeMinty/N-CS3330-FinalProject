@@ -11,22 +11,20 @@ import edu.mu.maven.view.ShopperView;
 
 public class ShopperOptions {
 	
-	public ShopperOptions(Scanner scanner, ShopperModel shopper, ShopperArraylistController shopperArrayController) {
-
-		ShopperController controller = new ShopperController(shopper, new ShopperView());
+	public ShopperOptions(Scanner scanner, ShopperController shopperController, ShopperArraylistController shopperArrayController) {
 
 		while(true) {
 			
-			int userMenuInput = menuChoice(scanner, controller);
+			int userMenuInput = menuChoice(scanner, shopperController);
 
 			switch(userMenuInput) {
 			case 1:
 				break;
 			case 2:
-				changeUsername(scanner,controller, shopperArrayController);
+				changeUsername(scanner, shopperController, shopperArrayController);
 				continue;
 			case 3:
-				addToBalance(controller, scanner,shopperArrayController);
+				addToBalance(shopperController, scanner,shopperArrayController);
 				continue;
 			case 4:
 				Main.callMain();

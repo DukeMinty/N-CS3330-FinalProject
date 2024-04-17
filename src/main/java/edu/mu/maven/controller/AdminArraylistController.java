@@ -31,7 +31,7 @@ public class AdminArraylistController {
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
 
-                if (parts.length >= 3) {
+                if (parts.length == 2) {
                 	try {
                         String username = parts[0];
                         String password = parts[1];
@@ -43,7 +43,7 @@ public class AdminArraylistController {
                 	}
 
                 } else {
-                    System.out.println("Skipping line due to incorrect format");
+                    System.out.println("Skipping admin line due to incorrect format");
                 }
             }
         } catch (IOException e) {
