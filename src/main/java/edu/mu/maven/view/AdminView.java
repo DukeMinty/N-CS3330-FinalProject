@@ -1,6 +1,6 @@
 package edu.mu.maven.view;
 
-import edu.mu.maven.model.Admin;
+import edu.mu.maven.model.AdminModel;
 
 //Created by Aaron Trebus
 //Class is the view for Admin objects
@@ -9,7 +9,7 @@ import edu.mu.maven.model.Admin;
 
 public class AdminView {
 	
-	public void printAdminDetails(Admin admin) {
+	public void printAdminDetails(AdminModel admin) {
 		admin.toString();
 	}
 

@@ -6,12 +6,12 @@ import java.util.Scanner;
 import edu.mu.maven.controller.ShopperController;
 import edu.mu.maven.loginWindow.InitialScreen;
 import edu.mu.maven.loginWindow.UserSourceManager;
-import edu.mu.maven.model.Shopper;
+import edu.mu.maven.model.ShopperModel;
 import edu.mu.maven.view.ShopperView;
 
 public class ShopperOptions {
 	
-	public ShopperOptions(Shopper shopper, Scanner scanner, UserSourceManager manager) {
+	public ShopperOptions(ShopperModel shopper, Scanner scanner, UserSourceManager manager) {
 		
 		ShopperController controller = new ShopperController(shopper, new ShopperView());
 		

@@ -1,6 +1,6 @@
 package edu.mu.maven.controller;
 
-import edu.mu.maven.model.Admin;
+import edu.mu.maven.model.AdminModel;
 import edu.mu.maven.view.AdminView;
 
 //Created by Aaron Trebus
@@ -10,10 +10,10 @@ import edu.mu.maven.view.AdminView;
 
 public class AdminController {
 	
-	private Admin model;
+	private AdminModel model;
 	private AdminView view;
 	
-	public AdminController(Admin model, AdminView view) {
+	public AdminController(AdminModel model, AdminView view) {
 		this.model=model;
 		this.view=view;
 	}

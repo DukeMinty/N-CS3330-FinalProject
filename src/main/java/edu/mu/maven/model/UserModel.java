@@ -4,12 +4,12 @@ package edu.mu.maven.model;
 
 //Class is the default abstract Users type that Admin and Shopper will extend
 
-public abstract class Users {
+public abstract class UserModel {
 	
 	private String username;
 	private String password;
 	
-	public Users(String username, String password) {
+	public UserModel(String username, String password) {
 		this.username=username;
 		this.password=password;
 	}

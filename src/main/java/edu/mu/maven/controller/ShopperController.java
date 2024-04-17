@@ -2,7 +2,7 @@ package edu.mu.maven.controller;
 
 import java.util.ArrayList;
 
-import edu.mu.maven.model.Shopper;
+import edu.mu.maven.model.ShopperModel;
 import edu.mu.maven.view.ShopperView;
 
 //Created by Aaron Trebus
@@ -12,10 +12,10 @@ import edu.mu.maven.view.ShopperView;
 
 public class ShopperController {
 	
-	private Shopper model;
+	private ShopperModel model;
 	private ShopperView view;
 	
-	public ShopperController(Shopper model, ShopperView view) {
+	public ShopperController(ShopperModel model, ShopperView view) {
 		this.model=model;
 		this.view=view;
 	}

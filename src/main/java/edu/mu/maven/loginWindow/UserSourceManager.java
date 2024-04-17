@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 import edu.mu.maven.controller.AdminController;
 import edu.mu.maven.controller.ShopperController;
-import edu.mu.maven.model.Admin;
-import edu.mu.maven.model.Shopper;
+import edu.mu.maven.model.AdminModel;
+import edu.mu.maven.model.ShopperModel;
 import edu.mu.maven.view.AdminView;
 import edu.mu.maven.view.ShopperView;
 
@@ -19,8 +19,8 @@ public class UserSourceManager {
 	final String shopperInfoPath = "files/shoppers.txt";
 	final String adminInfoPath = "files/admins.txt";
 	
-	private ArrayList<Shopper> shoppers = new ArrayList<>();
-	private ArrayList<Admin> admins = new ArrayList<>();
+	private ArrayList<ShopperModel> shoppers = new ArrayList<>();
+	private ArrayList<AdminModel> admins = new ArrayList<>();
 	
 	ShopperController shopperController;
 	ShopperView shopperView;
@@ -40,7 +40,7 @@ public class UserSourceManager {
                         String password = parts[1];
                         double accountBalance = Double.parseDouble(parts[2]);
 
-                        Shopper shopper = new Shopper(username, password, accountBalance);
+                        ShopperModel shopper = new ShopperModel(username, password, accountBalance);
                         shoppers.add(shopper);
                 	} catch (NumberFormatException e) {
                 		e.printStackTrace();
@@ -53,7 +53,7 @@ public class UserSourceManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
-		for(Shopper shopper : shoppers) {
+		for(ShopperModel shopper : shoppers) {
 			System.out.println(shopper.toString());
 		}
 	}
@@ -69,7 +69,7 @@ public class UserSourceManager {
                         String username = parts[0];
                         String password = parts[1];
 
-                        Admin admin = new Admin(username, password);
+                        AdminModel admin = new AdminModel(username, password);
                         admins.add(admin);
                 	} catch (NumberFormatException e) {
                 		e.printStackTrace();
@@ -88,7 +88,7 @@ public class UserSourceManager {
 		try {
 			FileWriter accountInfoWriter = new FileWriter(shopperInfoPath);
             BufferedWriter bufferedWriter = new BufferedWriter(accountInfoWriter);
-            for (Shopper shopper : shoppers) {
+            for (ShopperModel shopper : shoppers) {
                 shopperController = new ShopperController(shopper, shopperView);
                 bufferedWriter.write(shopperController.getShopperUsername()+","+shopperController.getShopperPassword()+","+shopperController.getShopperBalance());
                 bufferedWriter.newLine();
@@ -99,12 +99,12 @@ public class UserSourceManager {
 		}
 	}
 	
-	public void AddToShopperList(Shopper shopper) {
+	public void AddToShopperList(ShopperModel shopper) {
 		shoppers.add(shopper);
 	}
 	
 	public boolean CheckUsernameRepeat(String regUsername) {
-		for(Shopper shopper : shoppers) {
+		for(ShopperModel shopper : shoppers) {
 			shopperController = new ShopperController(shopper, shopperView);
 			if(regUsername.equals(shopperController.getShopperUsername())) {
 				return true;
@@ -113,9 +113,9 @@ public class UserSourceManager {
 		return false;
 	}
 	
-	public Shopper CheckShopperExistence(String logUsername, String logPassword) {
+	public ShopperModel CheckShopperExistence(String logUsername, String logPassword) {
 		
-		for(Shopper shopper : shoppers) {
+		for(ShopperModel shopper : shoppers) {
 			shopperController = new ShopperController(shopper, shopperView);
 			if(logUsername.equals(shopperController.getShopperUsername()) && logPassword.equals(shopperController.getShopperPassword())) {
 				return shopper;
@@ -124,8 +124,8 @@ public class UserSourceManager {
 		return null;
 	}
 	
-	public Admin CheckAdminExistence(String logUsername, String logPassword) {
-		for(Admin admin : admins) {
+	public AdminModel CheckAdminExistence(String logUsername, String logPassword) {
+		for(AdminModel admin : admins) {
 			adminController = new AdminController(admin, adminView);
 			if(logUsername.equals(adminController.getAdminUsername()) && logPassword.equals(adminController.getAdminPassword())) {
 				return admin;

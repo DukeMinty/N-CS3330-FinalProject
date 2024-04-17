@@ -9,8 +9,8 @@ package edu.mu.maven.model;
 
 //Includes the username and password fields (will change if I can find a better way to format)
 
-public class Admin extends Users{
-	public Admin(String username, String password) {
+public class AdminModel extends UserModel{
+	public AdminModel(String username, String password) {
 		super(username,password);
 	}
 }

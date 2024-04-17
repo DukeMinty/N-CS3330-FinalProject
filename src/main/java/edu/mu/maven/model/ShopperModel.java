@@ -9,7 +9,7 @@ import java.util.ArrayList;
 //Includes the username and password fields (will change if I can find a better way to format)
 //Also includes the shopping cart that can have items added to it
 
-public class Shopper extends Users {
+public class ShopperModel extends UserModel {
     private double accountBalance;
     
     //Change to Item type when it is made
@@ -18,7 +18,7 @@ public class Shopper extends Users {
     //
     //
     
-    public Shopper(String username, String password, double accountBalance) {
+    public ShopperModel(String username, String password, double accountBalance) {
     	super(username, password);
     	this.accountBalance = accountBalance;
     	shoppingCart = new ArrayList<>();

@@ -2,8 +2,8 @@ package edu.mu.maven.loginWindow;
 
 import java.util.Scanner;
 
-import edu.mu.maven.model.Admin;
-import edu.mu.maven.model.Shopper;
+import edu.mu.maven.model.AdminModel;
+import edu.mu.maven.model.ShopperModel;
 import edu.mu.maven.userOptions.AdminOptions;
 import edu.mu.maven.userOptions.ShopperOptions;
 
@@ -26,13 +26,13 @@ public class Login {
 			System.out.println("Enter password:");
 			logPassword = scanner.nextLine();
 			
-			Shopper loggedInShopper = manager.CheckShopperExistence(logUsername, logPassword);
+			ShopperModel loggedInShopper = manager.CheckShopperExistence(logUsername, logPassword);
 			if(loggedInShopper != null) {
 				new ShopperOptions(loggedInShopper, scanner, manager);
 				break;
 			}
 			
-			Admin loggedInAdmin = manager.CheckAdminExistence(logUsername, logPassword);
+			AdminModel loggedInAdmin = manager.CheckAdminExistence(logUsername, logPassword);
 			if(loggedInAdmin != null) {
 				new AdminOptions(loggedInAdmin, scanner, manager);
 				break;

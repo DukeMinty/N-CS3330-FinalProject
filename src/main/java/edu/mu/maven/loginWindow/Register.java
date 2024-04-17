@@ -2,7 +2,7 @@ package edu.mu.maven.loginWindow;
 
 import java.util.Scanner;
 
-import edu.mu.maven.model.Shopper;
+import edu.mu.maven.model.ShopperModel;
 
 //Created by Aaron Trebus
 
@@ -49,7 +49,7 @@ public class Register {
 				System.out.println("Username is already taken.\n");
 				continue;
 			}
-			manager.AddToShopperList(new Shopper(regUsername, regPassword, 20));
+			manager.AddToShopperList(new ShopperModel(regUsername, regPassword, 20));
 			manager.RefreshFile();
 			break;
 

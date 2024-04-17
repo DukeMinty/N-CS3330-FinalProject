@@ -3,13 +3,13 @@ package edu.mu.maven.userOptions;
 import java.util.Scanner;
 
 import edu.mu.maven.loginWindow.UserSourceManager;
-import edu.mu.maven.model.Admin;
+import edu.mu.maven.model.AdminModel;
 
 public class AdminOptions {
 	
 	//Where Jacob can start
 	
-	public AdminOptions(Admin loggedInAdmin, Scanner scanner, UserSourceManager manager) {
+	public AdminOptions(AdminModel loggedInAdmin, Scanner scanner, UserSourceManager manager) {
 		
 	}
 
