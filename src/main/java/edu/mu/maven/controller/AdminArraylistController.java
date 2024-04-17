@@ -7,6 +7,7 @@ import java.io.IOException;
 import edu.mu.maven.model.AdminArraylistModel;
 import edu.mu.maven.model.AdminModel;
 import edu.mu.maven.view.AdminArraylistView;
+import edu.mu.maven.view.AdminView;
 
 public class AdminArraylistController {
 	
@@ -20,7 +21,7 @@ public class AdminArraylistController {
 		this.view = view;
 	}
 	
-	public void AddAdminToList(AdminModel admin) {
+	public void addAdminToList(AdminModel admin) {
 		model.addAdmin(admin);
 	}
 	
@@ -36,7 +37,7 @@ public class AdminArraylistController {
                         String password = parts[1];
 
                         AdminModel model = new AdminModel(username, password);
-                        AddAdminToList(model);
+                        addAdminToList(model);
                 	} catch (NumberFormatException e) {
                 		e.printStackTrace();
                 	}
@@ -48,6 +49,16 @@ public class AdminArraylistController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+	}
+	
+	public AdminModel checkAdminExistence(String logUsername, String logPassword) {
+		for(AdminModel admin : model.getList()) {
+			AdminController adminController = new AdminController(admin, new AdminView());
+			if(logUsername.equals(adminController.getAdminUsername()) && logPassword.equals(adminController.getAdminPassword())) {
+				return admin;
+			}
+		}
+		return null;
 	}
 	
 	public void UpdateView() {

@@ -2,14 +2,104 @@ package edu.mu.maven;
 
 import java.util.Scanner;
 
-import edu.mu.maven.loginWindow.InitialScreen;
+import edu.mu.maven.controller.AdminArraylistController;
+import edu.mu.maven.controller.ShopperArraylistController;
+import edu.mu.maven.loginRegister.ShopperLogin;
+import edu.mu.maven.loginRegister.AdminLogin;
+import edu.mu.maven.loginRegister.Register;
+import edu.mu.maven.model.AdminArraylistModel;
+import edu.mu.maven.model.AdminModel;
+import edu.mu.maven.model.ShopperArraylistModel;
+import edu.mu.maven.model.ShopperModel;
+import edu.mu.maven.userOptions.AdminOptions;
+import edu.mu.maven.userOptions.ShopperOptions;
+import edu.mu.maven.view.AdminArraylistView;
+import edu.mu.maven.view.ShopperArraylistView;
 
 public class Main {
+	
+	private static boolean initialized = false;
+	static Scanner scanner = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
-		new InitialScreen(scanner);
+		
+		ShopperArraylistController shopperArrayController = null;
+		AdminArraylistController adminArrayController = null;
+		
+		if(!initialized) {
+			initialize(shopperArrayController, adminArrayController);
+		}
+		
+		ShopperModel shopperModel = null;
+		AdminModel adminModel = null;
+		
+		while(true) {
+			int menuChoice = initialMenuChoice();
+			
+	        switch(menuChoice) {
+	        case 1:
+	        	new Register(scanner, shopperArrayController);
+	        	continue;
+	        case 2:
+	        	shopperModel = ShopperLogin.login(scanner, shopperArrayController);
+	        	break;
+	        case 3:
+	        	adminModel = AdminLogin.login(scanner, adminArrayController);
+	        	new AdminOptions(scanner, adminModel, shopperArrayController);
+	        case 4:
+	        	System.exit(0);
+	        default:
+	        	System.out.println("Error detected in menu choice");
+	        	System.exit(0);
+	        }
+	        break;
+		}
+		
+		new ShopperOptions(scanner, shopperModel, shopperArrayController);
 
 	}
+	
+	public static void initialize(ShopperArraylistController shopperArrayController, AdminArraylistController adminArrayController) {
+		ShopperArraylistModel shopperArrayModel = new ShopperArraylistModel();
+		ShopperArraylistView shopperArrayView = new ShopperArraylistView();
+		shopperArrayController = new ShopperArraylistController(shopperArrayModel, shopperArrayView);
+		
+		AdminArraylistModel adminArrayModel = new AdminArraylistModel();
+		AdminArraylistView adminArrayView = new AdminArraylistView();
+		adminArrayController = new AdminArraylistController(adminArrayModel, adminArrayView);
+		
+		shopperArrayController.loadShoppersFromFile();
+		adminArrayController.loadAdminsFromFile();
+	}
+	
+	public static int initialMenuChoice(){
+		
+		int userMenuInput = 0;
+		
+		System.out.println("WORLD MARKET!!!!\n");
+		System.out.println("1. Register\n2. Shopper Login\n3. AdminLogin\n4. Exit");
+        while (userMenuInput == 0) {
+            try {
+                userMenuInput = Integer.parseInt(scanner.nextLine());
+                if(userMenuInput >= 1 && userMenuInput <=4) {
+                	break;
+                }else {
+                	System.out.println("Invalid choice");
+                	userMenuInput = 0;
+                }
+            } catch (NumberFormatException e) {
+                System.err.println("Invalid input");
+                userMenuInput = 0;
+            }
+        }
+        
+        return userMenuInput;
+		
+	}
+	
+    public static void callMain() {
+        String[] args = {}; // Empty array
+        main(args); // Call the main method with empty array
+    }
 
 }

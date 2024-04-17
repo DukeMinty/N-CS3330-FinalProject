@@ -1,7 +1,8 @@
-package edu.mu.maven.loginWindow;
+package edu.mu.maven.loginRegister;
 
 import java.util.Scanner;
 
+import edu.mu.maven.controller.ShopperArraylistController;
 import edu.mu.maven.model.ShopperModel;
 
 //Created by Aaron Trebus
@@ -17,7 +18,7 @@ import edu.mu.maven.model.ShopperModel;
 
 public class Register {
 	
-	public Register(Scanner scanner, UserSourceManager manager) {
+	public Register(Scanner scanner, ShopperArraylistController shopperArrayController) {
 		
 		System.out.println("Thank you for choosing to make an account with World Market!\n");
 		System.out.println("All users start with a $20 gratuity account balance, on us!\n\n");
@@ -45,12 +46,12 @@ public class Register {
 				System.out.println("Password choice is not safe\n");
 				continue;
 			}
-			if(manager.CheckUsernameRepeat(regUsername) == true) {
+			if(shopperArrayController.checkUsernameRepeat(regUsername) == true) {
 				System.out.println("Username is already taken.\n");
 				continue;
 			}
-			manager.AddToShopperList(new ShopperModel(regUsername, regPassword, 20));
-			manager.RefreshFile();
+			shopperArrayController.addShopperToList(new ShopperModel(regUsername, regPassword, 20));
+			shopperArrayController.refreshSourceFile();
 			break;
 
 		}

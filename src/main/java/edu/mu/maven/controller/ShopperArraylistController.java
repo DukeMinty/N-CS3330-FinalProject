@@ -73,6 +73,26 @@ public class ShopperArraylistController {
 		}
 	}
 	
+	public boolean checkUsernameRepeat(String regUsername) {
+		for(ShopperModel shopper : model.getList()) {
+			ShopperController shopperController = new ShopperController(shopper, new ShopperView());
+			if(regUsername.equals(shopperController.getShopperUsername())) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public ShopperModel checkShopperExistence(String logUsername, String logPassword) {
+		for(ShopperModel shopper : model.getList()) {
+			ShopperController shopperController = new ShopperController(shopper, new ShopperView());
+			if(logUsername.equals(shopperController.getShopperUsername()) && logPassword.equals(shopperController.getShopperPassword())) {
+				return shopper;
+			}
+		}
+		return null;
+	}
+	
 	public void updateView() {
 		view.printAllShoppers(model);
 	}
