@@ -3,4 +3,11 @@
   <groupId>edu.mu.maven</groupId>
   <artifactId>N-FinalProject</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <dependencies>
+  	<dependency>
+  		<groupId>edu.mu.maven</groupId>
+  		<artifactId>week9F-UnitTestingJUnitExample</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  </dependencies>
 </project>
