@@ -2,12 +2,15 @@ package edu.mu.maven.controller;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Scanner;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import edu.mu.maven.loginRegister.AdminLogin;
 import edu.mu.maven.model.AdminArraylistModel;
 import edu.mu.maven.model.AdminModel;
 import edu.mu.maven.view.AdminArraylistView;
@@ -71,6 +74,13 @@ public class AdminArraylistControllerTest {
 		@Test
 		void testUpdateView() {
 			assertEquals(true,ac.UpdateView());
+		}
+		
+		@Test
+		void testAdminLogin() {
+			ac.loadAdminsFromFile();
+			Scanner scanner = new Scanner(System.in);
+			a = AdminLogin.login(scanner, ac);
 		}
 		
 		
