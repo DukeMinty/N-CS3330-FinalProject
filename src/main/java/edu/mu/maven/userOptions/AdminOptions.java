@@ -1,5 +1,7 @@
 package edu.mu.maven.userOptions;
+import edu.mu.maven.model.AdminModel;
 import edu.mu.maven.model.ShopperModel;
+import edu.mu.maven.model.ShopperArraylistModel;
 
 import java.io.IOException;
 import java.util.Iterator;
@@ -14,19 +16,20 @@ import edu.mu.maven.controller.AdminController;
 import java.util.List;
 
 import edu.mu.maven.Main;
+ 
+
+// created by Jacob York
 
 public class AdminOptions {
 	
-	 private AdminController adminController;
 	 private Scanner scanner;
 	 private ShopperArraylistController shopperController;
 	 private List<Item> items;
 	 
-	public AdminOptions(Scanner scanner, AdminController loggedInAdmin, ShopperArraylistController shopperarrayController, List<Item> items) {
+	public AdminOptions(Scanner scanner, AdminModel loggedInAdmin, ShopperArraylistController shopperarrayControllers) {
 		
 		this.scanner = scanner;
-		this.adminController = adminController;
-		this.shopperController = shopperController;
+		this.shopperController = shopperarrayControllers;
 		
 		InventoryLoader inventoryLoader = new InventoryLoader();
         try {
@@ -37,6 +40,7 @@ public class AdminOptions {
         
         displayMenu(); //call the method to display the admin menu
 	}
+
 
 	public void displayMenu() {
 		int choice;
@@ -103,44 +107,45 @@ public class AdminOptions {
 	    return null;
 	}
 	
-	private void deleteShopperAccounts(ShopperArraylistController shopperController) {
+	private void deleteShopperAccounts() {
 		System.out.println("Enter the username of the shopper to delete: ");
 		String username = scanner.nextLine();
+		System.out.println("Enter the password of the shopper to delete: ");
+		String password = scanner.nextLine();
 		
-		List<ShopperModel> shoppers = shopperController.getModel().getList();
-		boolean found = false;
-		
-		Iterator<ShopperModel> iterator = shoppers.iterator();
-		while (iterator.hasNext()) {
-			ShopperModel shopper = iterator.next();
-			if (shopper.getUsername().equalsIgnoreCase(username)) {
-				iterator.remove();
-				found = true;
-				break;
+		//check for the existence of the shopper
+		if (shopperController != null) {
+			ShopperModel foundShopper = shopperController.checkShopperExistence(username, password);
+			if (shopperController != null && foundShopper != null) {
+				shopperController.removeShopperFromList(foundShopper);
+				shopperController.refreshSourceFile();
+				System.out.println("Shopper account deleted successfully.");
+			} else {
+				System.out.println("Shopper account not found.");
 			}
+		} else {
+				System.out.println("Shopper controller is not initialized.");
 		}
-		if (found) {
-			try {
-	            shopperController.refreshSourceFile();
-	            System.out.println("Shopper account deleted.");
-	        } catch (IOException e) {
-	            System.err.println("Error saving changes: " + e.getMessage());
-	        }
-	    } else {
-	        System.out.println("Shopper account not found.");
-	    }
 	}
+
 	
 	private void changePriceOfInventory() {
 		System.out.print("Enter the ID of the item to change its price: ");
 	    String id = scanner.nextLine();
 	    System.out.print("Enter the new price for the item: ");
 	    double newPrice = scanner.nextDouble(); 
+	    scanner.nextLine();
 
 	    Item item = findItemById(items, id);
 	    if (item != null) {
 	        item.setPrice(newPrice);
-	        System.out.println("Price changed. New price for " + item.getName() + ": " + item.getPrice());
+	        try{
+	        	new InventoryLoader().saveItemsToFile(items, "files/inventory.txt"); //update price in inventory.txt
+		        System.out.println("Price changed. New price for " + item.getName() + ": " + item.getPrice());
+	        } catch (IOException e) {
+	        	System.err.println("Error while updating the file: " + e.getMessage());
+	        }
+
 	    } else {
 	        System.out.println("Item not found.");
 	    }

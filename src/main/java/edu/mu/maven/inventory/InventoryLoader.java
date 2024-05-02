@@ -1,10 +1,14 @@
 package edu.mu.maven.inventory;
 
 import edu.mu.maven.inventory.Item;
+//created by Jacob York
+
 import edu.mu.maven.inventory.Region;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,4 +38,15 @@ public class InventoryLoader {
         }
         return items;
     }
+	
+	public void saveItemsToFile(List<Item> items, String filename) throws IOException {
+	    try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
+	        for (Item item : items) {
+	            writer.write(item.getId() + "," + item.getName() + "," + item.getPrice() + "," + item.getStock() + "," + item.getRegion());
+	            writer.newLine();
+	        }
+	    } catch (IOException e) {
+	        throw new IOException("Failed to save items to file: " + e.getMessage(), e);
+	    }
+	}
 }

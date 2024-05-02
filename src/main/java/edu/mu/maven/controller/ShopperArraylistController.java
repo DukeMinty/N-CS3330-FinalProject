@@ -1,6 +1,7 @@
 package edu.mu.maven.controller;
 
 import java.io.BufferedReader;
+
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -15,6 +16,7 @@ public class ShopperArraylistController {
 	
 	private ShopperArraylistModel model;
 	private ShopperArraylistView view;
+	
 	
 	private final String shopperInfoPath = "files/shoppers.txt";
 	
