@@ -26,8 +26,9 @@ public class AdminController {
 		return model.getPassword();
 	}
 	
-	public void updateView() {
+	public boolean updateView() {
 		view.printAdminDetails(model);
+		return true;
 	}
 
 }

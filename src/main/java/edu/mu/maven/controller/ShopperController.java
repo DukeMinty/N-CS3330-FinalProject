@@ -45,8 +45,9 @@ public class ShopperController {
 		return model.getShoppingCart();
 	}
 	
-	public void updateView() {
+	public boolean updateView() {
 		view.printShopperDetails(model);
+		return true;
 	}
 
 }

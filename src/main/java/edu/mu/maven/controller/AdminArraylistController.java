@@ -25,7 +25,7 @@ public class AdminArraylistController {
 		model.addAdmin(admin);
 	}
 	
-	public void loadAdminsFromFile(){
+	public boolean loadAdminsFromFile(){
 		try (BufferedReader reader = new BufferedReader(new FileReader(adminInfoPath))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -40,6 +40,7 @@ public class AdminArraylistController {
                         addAdminToList(model);
                 	} catch (NumberFormatException e) {
                 		e.printStackTrace();
+                		return false;
                 	}
 
                 } else {
@@ -48,7 +49,9 @@ public class AdminArraylistController {
             }
         } catch (IOException e) {
             e.printStackTrace();
+            return false;
         }
+		return true;
 	}
 	
 	public AdminModel checkAdminExistence(String logUsername, String logPassword) {
@@ -61,8 +64,9 @@ public class AdminArraylistController {
 		return null;
 	}
 	
-	public void UpdateView() {
+	public boolean UpdateView() {
 		view.printAllAdmins(model);
+		return true;
 	}
 
 }

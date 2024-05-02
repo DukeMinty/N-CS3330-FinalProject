@@ -93,7 +93,7 @@ public class Main {
 		int userMenuInput = 0;
 		
 		System.out.println("WORLD MARKET!!!!\n");
-		System.out.println("1. Register\n2. Shopper Login\n3. AdminLogin\n4. Exit");
+		System.out.println("1. Register\n2. Shopper Login\n3. Admin Login\n4. Exit");
         while (userMenuInput == 0) {
             try {
                 userMenuInput = Integer.parseInt(scanner.nextLine());

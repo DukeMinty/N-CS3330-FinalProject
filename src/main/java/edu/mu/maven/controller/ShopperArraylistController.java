@@ -33,7 +33,7 @@ public class ShopperArraylistController {
 		model.removeShopper(shopper);
 	}
 	
-	public void loadShoppersFromFile(){
+	public boolean loadShoppersFromFile(){
 		try (BufferedReader reader = new BufferedReader(new FileReader(shopperInfoPath))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -49,6 +49,7 @@ public class ShopperArraylistController {
                         addShopperToList(shopper);
                 	} catch (NumberFormatException e) {
                 		e.printStackTrace();
+                		return false;
                 	}
 
                 } else {
@@ -57,10 +58,12 @@ public class ShopperArraylistController {
             }
         } catch (IOException e) {
             e.printStackTrace();
+            return false;
         }
+		return true;
 	}
 	
-	public void refreshSourceFile() {
+	public boolean refreshSourceFile() {
 		try {
 			FileWriter accountInfoWriter = new FileWriter(shopperInfoPath);
             BufferedWriter bufferedWriter = new BufferedWriter(accountInfoWriter);
@@ -72,7 +75,9 @@ public class ShopperArraylistController {
             bufferedWriter.close();
 		}catch(Exception e) {
 			System.out.println("So sorry! Something went wrong refreshing an account!\n");
+			return false;
 		}
+		return true;
 	}
 	
 	public boolean checkUsernameRepeat(String regUsername) {
@@ -95,8 +100,9 @@ public class ShopperArraylistController {
 		return null;
 	}
 	
-	public void updateView() {
+	public boolean updateView() {
 		view.printAllShoppers(model);
+		return true;
 	}
 
 }
