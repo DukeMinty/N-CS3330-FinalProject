@@ -31,7 +31,7 @@ public class Main {
 		if(!initialized) {
 			shopperArrayController = initializeShopperArraylistController();
 			adminArrayController = initializeAdminArraylistController();
-			
+			initialized = true;
 		}
 		
 		ShopperModel shopperModel = null;
