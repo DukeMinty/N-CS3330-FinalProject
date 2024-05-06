@@ -9,7 +9,7 @@ import edu.mu.maven.model.ShopperModel;
 
 public class ShoppingMenu{
 	
-	public static void Menu(Scanner scanner, List<Item> item, ShopperModel shopperModel) {
+	public static void Menu(Scanner scanner,List<Item> item, ShopperModel shopperModel) {
 		boolean check = true;
 		System.out.println("Hello! What region will you be shopping today\n1. American\n2. Japanese \n3. Korean\n4. Go Back\n5. End Shopping Spree");
 		while(check) {
@@ -24,7 +24,7 @@ public class ShoppingMenu{
 				}else if(shopperInput == 4) {
 					Main.callMain();
 				}else if(shopperInput == 5) {
-                	// call to checkout function
+					
 				}else {
                 	System.out.println("Invalid choice");
                 	check = true;

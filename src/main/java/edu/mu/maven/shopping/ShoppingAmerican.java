@@ -38,9 +38,8 @@ public class ShoppingAmerican{
 	                if (ShoppingMenu.stockDecrement(chosenItem) > 0) {
 	                    ShoppingMenu.addItemtoCart(shopperModel, chosenItem);
 	                }
-	                check = false;
+	                check = true;
 	            } else if(choice == numItems + 1) {
-	            	System.out.println("This is shop American" + choice);
 	                ShoppingMenu.Menu(scanner, tempItems, shopperModel);
 	            }
 	            else {
