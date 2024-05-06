@@ -11,7 +11,7 @@ import edu.mu.maven.model.ShopperModel;
 
 
 public class ShoppingAmerican{
-	public static void ShopAmerican(Scanner scanner,  List<Item> item, ShopperModel shopperModel) {
+	public static boolean ShopAmerican(Scanner scanner,  List<Item> item, ShopperModel shopperModel) {
 	    final String Region = "AMERICAN";
 	    System.out.println("Please pick what item you'd like!");
 	    boolean check = true;
@@ -40,7 +40,7 @@ public class ShoppingAmerican{
 	                }
 	                check = true;
 	            } else if(choice == numItems + 1) {
-	                ShoppingMenu.Menu(scanner, tempItems, shopperModel);
+	                ShoppingMenu.Menu(scanner, item, shopperModel);
 	            }
 	            else {
 	            	System.err.println("Invalid Input. Please enter a Integer corresponding to a food option.");
@@ -50,8 +50,8 @@ public class ShoppingAmerican{
 	            System.err.println("Invalid input. Please enter a Integer.");
 	            scanner.next();	        
 	         }
-	        
         }
+		return false;
     }
 }
 

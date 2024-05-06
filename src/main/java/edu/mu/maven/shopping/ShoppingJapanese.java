@@ -8,7 +8,7 @@ import edu.mu.maven.inventory.Item;
 import edu.mu.maven.model.ShopperModel;
 public class ShoppingJapanese {
 	
-	public static void ShopJapanese(Scanner scanner, List<Item> item, ShopperModel shopperModel) {
+	public static boolean ShopJapanese(Scanner scanner,  List<Item> item, ShopperModel shopperModel) {
 	    final String Region = "JAPANESE";
 	    System.out.println("Please pick what item you'd like!");
 	    boolean check = true;
@@ -37,7 +37,7 @@ public class ShoppingJapanese {
 	                }
 	                check = true;
 	            } else if(choice == numItems + 1) {
-	                ShoppingMenu.Menu(scanner, tempItems, shopperModel);
+	                ShoppingMenu.Menu(scanner, item, shopperModel);
 	            }
 	            else {
 	            	System.err.println("Invalid Input. Please enter a Integer corresponding to a food option.");
@@ -47,8 +47,8 @@ public class ShoppingJapanese {
 	            System.err.println("Invalid input. Please enter a Integer.");
 	            scanner.next();	        
 	         }
-	        
         }
-    }	
+		return false;
+    }
 }
 
