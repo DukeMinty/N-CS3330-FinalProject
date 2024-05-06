@@ -2,6 +2,7 @@ package edu.mu.maven.controller;
 
 import java.util.ArrayList;
 
+import edu.mu.maven.inventory.Item;
 import edu.mu.maven.model.ShopperModel;
 import edu.mu.maven.view.ShopperView;
 
@@ -41,8 +42,8 @@ public class ShopperController {
 	}
 	
 	//Change to type of Item when it is made
-	public ArrayList<String> getShopperCart() {
-		return model.getShoppingCart();
+	public ArrayList<Item> getShopperCart() {
+		return (ArrayList<Item>) model.getShoppingCart();
 	}
 	
 	public boolean updateView() {
@@ -51,3 +52,4 @@ public class ShopperController {
 	}
 
 }
+

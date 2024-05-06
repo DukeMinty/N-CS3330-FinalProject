@@ -2,6 +2,8 @@ package edu.mu.maven.model;
 
 import java.util.ArrayList;
 
+import edu.mu.maven.inventory.Item;
+
 //Created by Aaron Trebus
 
 //Class lays out the paramaters for Shopper objects
@@ -14,7 +16,7 @@ public class ShopperModel extends UserModel {
     
     //Change to Item type when it is made
     //
-    private ArrayList<String> shoppingCart;
+    private ArrayList<Item> shoppingCart;
     //
     //
     
@@ -32,7 +34,7 @@ public class ShopperModel extends UserModel {
 		this.accountBalance = accountBalance;
 	}
 
-	public ArrayList<String> getShoppingCart() {
+	public ArrayList<Item> getShoppingCart() {
 		return shoppingCart;
 	}
 

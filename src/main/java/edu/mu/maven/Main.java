@@ -1,10 +1,14 @@
 package edu.mu.maven;
 
+import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
 import edu.mu.maven.controller.AdminArraylistController;
 import edu.mu.maven.controller.ShopperArraylistController;
 import edu.mu.maven.controller.ShopperController;
+import edu.mu.maven.inventory.InventoryLoader;
+import edu.mu.maven.inventory.Item;
 import edu.mu.maven.loginRegister.ShopperLogin;
 import edu.mu.maven.loginRegister.AdminLogin;
 import edu.mu.maven.loginRegister.Register;
@@ -12,6 +16,7 @@ import edu.mu.maven.model.AdminArraylistModel;
 import edu.mu.maven.model.AdminModel;
 import edu.mu.maven.model.ShopperArraylistModel;
 import edu.mu.maven.model.ShopperModel;
+import edu.mu.maven.shopping.ShoppingMenu;
 import edu.mu.maven.userOptions.AdminOptions;
 import edu.mu.maven.userOptions.ShopperOptions;
 import edu.mu.maven.view.AdminArraylistView;
@@ -66,6 +71,14 @@ public class Main {
 		
 		//This is where the call for the Shop itself will start
 		//new nameofshop(<whatever you need to pass in>)
+		InventoryLoader inventoryLoader = new InventoryLoader();
+		List<Item> items = null;
+		try {
+			items = inventoryLoader.loadItemsFromFile("files/inventory.txt");
+			ShoppingMenu.Menu(scanner, items, shopperModel);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 	}
 	
