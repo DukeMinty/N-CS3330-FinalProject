@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-1,123456,20.0
-=======
 shopper,password,30.0
 aaron,password,20.0
 Aaron,player,170.0
@@ -10,4 +7,3 @@ g,123456,20.0
 G,123456,20.0
 q,123456,20.0
 b,bbbbbb,30.0
->>>>>>> branch 'main' of https://github.com/DukeMinty/N-CS3330-FinalProject.git
