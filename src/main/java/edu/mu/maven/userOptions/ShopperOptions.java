@@ -73,9 +73,11 @@ public class ShopperOptions {
     	System.out.println("How much would you like to add?");
     	System.out.print("$");
     	double amountAddition = 0;
-    	while(true) {
+    	boolean loop = true;
+    	while(loop) {
     		try {
     			amountAddition = scanner.nextDouble();
+    			loop = false;
     		}catch (InputMismatchException e) {
     			System.out.println("Invalid input.");
     			continue;
