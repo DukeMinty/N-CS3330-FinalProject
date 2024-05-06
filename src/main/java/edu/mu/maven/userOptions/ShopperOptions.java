@@ -9,6 +9,11 @@ import edu.mu.maven.controller.ShopperController;
 import edu.mu.maven.model.ShopperModel;
 import edu.mu.maven.view.ShopperView;
 
+//Created by Aaron Trebus
+
+//This is the screen a logged in shopper will be passed to 
+//Gives options for their account or lets them pass straight to shopping
+
 public class ShopperOptions {
 	
 	public ShopperOptions(Scanner scanner, ShopperController shopperController, ShopperArraylistController shopperArrayController) {
@@ -68,9 +73,11 @@ public class ShopperOptions {
     	System.out.println("How much would you like to add?");
     	System.out.print("$");
     	double amountAddition = 0;
-    	while(true) {
+    	boolean loop = true;
+    	while(loop) {
     		try {
     			amountAddition = scanner.nextDouble();
+    			loop = false;
     		}catch (InputMismatchException e) {
     			System.out.println("Invalid input.");
     			continue;
