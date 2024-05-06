@@ -8,7 +8,7 @@ import edu.mu.maven.model.ShopperModel;
 
 //Created by Aaron Trebus
 
-//Class displays the Login window after the user choses it on InitialScreen
+//Class displays the Shopper Login window after the user choses it on InitialScreen
 
 public class ShopperLogin {
 	

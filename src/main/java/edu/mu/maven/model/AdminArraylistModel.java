@@ -2,6 +2,10 @@ package edu.mu.maven.model;
 
 import java.util.ArrayList;
 
+//Made by Aaron Trebus
+
+//Model for the arraylist that stores admin objects
+
 public class AdminArraylistModel {
 	
 	private ArrayList<AdminModel> adminList;

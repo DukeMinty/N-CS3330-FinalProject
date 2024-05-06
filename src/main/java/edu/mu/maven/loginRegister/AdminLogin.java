@@ -6,6 +6,10 @@ import edu.mu.maven.Main;
 import edu.mu.maven.controller.AdminArraylistController;
 import edu.mu.maven.model.AdminModel;
 
+//Made by Aaron Trebus
+
+//Class is the handler for logging in an admin
+
 public class AdminLogin {
 	
 public static AdminModel login(Scanner scanner, AdminArraylistController adminArrayController) {

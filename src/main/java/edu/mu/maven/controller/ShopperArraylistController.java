@@ -12,6 +12,10 @@ import edu.mu.maven.model.ShopperModel;
 import edu.mu.maven.view.ShopperArraylistView;
 import edu.mu.maven.view.ShopperView;
 
+//Made by Aaron Trebus
+
+//Class defines the boundaries and capabilties of the controller for the shopper arraylist
+
 public class ShopperArraylistController {
 	
 	private ShopperArraylistModel model;

@@ -9,6 +9,10 @@ import edu.mu.maven.model.AdminModel;
 import edu.mu.maven.view.AdminArraylistView;
 import edu.mu.maven.view.AdminView;
 
+//Made by Aaron Trebus
+
+//Class defines the boundaries and capabilties of the controller for the admin arraylist
+
 public class AdminArraylistController {
 	
 	private AdminArraylistModel model;

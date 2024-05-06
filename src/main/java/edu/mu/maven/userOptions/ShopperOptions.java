@@ -9,6 +9,11 @@ import edu.mu.maven.controller.ShopperController;
 import edu.mu.maven.model.ShopperModel;
 import edu.mu.maven.view.ShopperView;
 
+//Created by Aaron Trebus
+
+//This is the screen a logged in shopper will be passed to 
+//Gives options for their account or lets them pass straight to shopping
+
 public class ShopperOptions {
 	
 	public ShopperOptions(Scanner scanner, ShopperController shopperController, ShopperArraylistController shopperArrayController) {
