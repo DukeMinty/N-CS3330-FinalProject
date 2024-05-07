@@ -14,34 +14,35 @@ import edu.mu.maven.shippingStrategies.strategies.*;
 
 
 public class CheckoutOptions {
-	public static Boolean checkoutMenu(Scanner scanner, ShopperController controller) {
+	public static void checkoutMenu(Scanner scanner, ShopperController shoppingController) {
 		// Allows the user to checkout, continue shopping or logout.
 		// Returns 1 or 0. If 0 is returned, the user can continue shopping. 
-		
+
+		CheckoutController checkoutController = new CheckoutController();
+		checkoutController.setCart(shoppingController.getShopperCart());
 		Boolean goBack = false;
 		int choice;
 		while (!goBack) {
-			choice = menuChoices(scanner, controller);
+			choice = menuChoices(scanner, shoppingController);
 			
 			switch(choice) {
 			case 1:
-				checkoutCart(scanner, controller.getShopperCart());
+				viewCart(checkoutController, scanner);
 				break;
 			case 2:
-				goBack = true;
+				checkoutCart(scanner, shoppingController, checkoutController);
+				break;
 			case 3:
+				goBack = true;
+			case 4:
 				Main.callMain(); // logout
-				return true;  // The call above will end up with nested calls, so this is just to make sure that loops in main don't get stuck
 			}
 		}
-		
-		
-		return false;
 	}
 	
 	public static int menuChoices(Scanner scanner, ShopperController controller) {
 		System.out.println("Hello " + controller.getShopperUsername() + ". What would you like to do?");
-		System.out.println("1. Checkout\n2. Continue Shopping\n3. Logout");
+		System.out.println("1. View Cart\n2. Checkout\n3. Continue Shopping\n4. Logout");
 		int userMenuInput = 0;
 		
         while (userMenuInput == 0) {
@@ -61,12 +62,18 @@ public class CheckoutOptions {
         return userMenuInput;
 	}
 	
-	public static void checkoutCart(Scanner scanner, ArrayList<Item> cart) {
+	public static void viewCart(CheckoutController controller, Scanner scanner) {
+		System.out.println("Your current total is " + Double.toString(controller.getCartTotal()));
+		controller.printCart();
+		returnToCheckoutMenuOption(scanner);
+		
+	}
+	public static void checkoutCart(Scanner scanner, ShopperController shopperCont, CheckoutController controller) {
+		ArrayList<Item> cart = shopperCont.getShopperCart();
 		if (cart.size() == 0) {
 			System.out.println("The cart is currently empty. Returning to the checkout menu.");
 		}
 		else {
-			CheckoutController controller = new CheckoutController();
 			controller.setCart(cart);
 			
 			Address destination = ShippingDetails.readShippingDetails(scanner);
@@ -84,6 +91,7 @@ public class CheckoutOptions {
 			System.out.println("Success! Your order has been placed.");
 			controller.getView().print();
 			
+			shopperCont.addToShopperBalance(-controller.getCartTotal());
 			returnToCheckoutMenuOption(scanner);
 		}
 	}
@@ -118,14 +126,16 @@ public class CheckoutOptions {
 	}
 	
 	public static void returnToCheckoutMenuOption(Scanner scanner) {
-		System.out.println("Enter any number to return to the checkoutMenu");
-
-		while (true) {
+		System.out.println("Enter any number to return to the checkout menu");
+		Boolean finished = false;
+		
+		while (!finished) {
             try {
                 Integer.parseInt(scanner.nextLine());
-                break;
+                finished = true;
             } catch (NumberFormatException e) {
                 System.err.println("Invalid input");
+                finished = false;
             }
         }
 	}
