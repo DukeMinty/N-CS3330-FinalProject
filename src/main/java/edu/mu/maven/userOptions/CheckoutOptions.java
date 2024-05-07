@@ -3,7 +3,6 @@ package edu.mu.maven.userOptions;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-import edu.mu.maven.Main;
 import edu.mu.maven.address.Address;
 import edu.mu.maven.controller.ShopperController;
 import edu.mu.maven.inventory.Item;
@@ -20,9 +19,9 @@ public class CheckoutOptions {
 
 		CheckoutController checkoutController = new CheckoutController();
 		checkoutController.setCart(shoppingController.getShopperCart());
-		Boolean goBack = false;
+		Boolean logout = false;
 		int choice;
-		while (!goBack) {
+		while (!logout) {
 			choice = menuChoices(scanner, shoppingController);
 			
 			switch(choice) {
@@ -33,22 +32,20 @@ public class CheckoutOptions {
 				checkoutCart(scanner, shoppingController, checkoutController);
 				break;
 			case 3:
-				goBack = true;
-			case 4:
-				Main.callMain(); // logout
+				logout = true; // logout
 			}
 		}
 	}
 	
 	public static int menuChoices(Scanner scanner, ShopperController controller) {
 		System.out.println("Hello " + controller.getShopperUsername() + ". What would you like to do?");
-		System.out.println("1. View Cart\n2. Checkout\n3. Continue Shopping\n4. Logout");
+		System.out.println("1. View Cart\n2. Checkout\n3. Logout");
 		int userMenuInput = 0;
 		
         while (userMenuInput == 0) {
             try {
                 userMenuInput = Integer.parseInt(scanner.nextLine());
-                if(userMenuInput >= 1 && userMenuInput <=4) {
+                if(userMenuInput >= 1 && userMenuInput <= 3) {
                 	break;
                 }else {
                 	System.out.println("Invalid choice");
