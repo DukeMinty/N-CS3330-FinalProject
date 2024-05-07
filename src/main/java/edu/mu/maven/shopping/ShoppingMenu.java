@@ -6,29 +6,30 @@ import edu.mu.maven.Main;
 import edu.mu.maven.controller.ShopperController;
 import edu.mu.maven.inventory.Item;
 import edu.mu.maven.model.ShopperModel;
+import edu.mu.maven.userOptions.CheckoutOptions;
 
 public class ShoppingMenu{
 	
-	public static boolean Menu(Scanner scanner,List<Item> item, ShopperModel shopperModel) {
+	public static boolean Menu(Scanner scanner,List<Item> item, ShopperModel shopperModel, ShopperController shopperController) {
 		boolean check = true;
 		System.out.println("Hello! What region will you be shopping today\n1. American\n2. Japanese \n3. Korean\n4. Go Back\n5. End Shopping Spree");
 		while(check) {
 			try{
 				int shopperInput = Integer.parseInt(scanner.nextLine());
 				if(shopperInput == 1) {
-                	ShoppingAmerican.ShopAmerican(scanner,  item, shopperModel);
+                	ShoppingAmerican.ShopAmerican(scanner,  item, shopperModel, shopperController);
                 	return true;
 				}else if(shopperInput == 2) {
-                	ShoppingJapanese.ShopJapanese(scanner,  item, shopperModel);
+                	ShoppingJapanese.ShopJapanese(scanner,  item, shopperModel, shopperController);
                 	return true;
 				}else if(shopperInput == 3) {
-                	ShoppingKorean.ShopKorean(scanner, item, shopperModel);
+                	ShoppingKorean.ShopKorean(scanner, item, shopperModel, shopperController);
                 	return true;
 				}else if(shopperInput == 4) {
 					Main.callMain();
 					return true;
 				}else if(shopperInput == 5) {
-					//need call for checkout
+					CheckoutOptions.checkoutMenu(scanner, shopperController);
 					return true;
 				}else {
                 	System.err.println("Invalid choice. Choose a integer corresponding to a choice above.");
@@ -44,7 +45,7 @@ public class ShoppingMenu{
 	public static void addItemtoCart(ShopperModel shopperModel, Object item) {
 		try {
 			shopperModel.getShoppingCart().add((Item) item);
-		}catch(Exception e){
+			}catch(Exception e){
 			System.out.println("Something went wrong.Add to cart unsuccessful");
 		}
 		

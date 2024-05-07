@@ -24,7 +24,7 @@ import edu.mu.maven.model.ShopperModel;
 import edu.mu.maven.view.ShopperArraylistView;
 import edu.mu.maven.view.ShopperView;
 
-public class ShoppingMenuTest {
+public class ShoppingAmericanTest {
 	
 	
 	Scanner testScanner = null;
@@ -35,7 +35,7 @@ public class ShoppingMenuTest {
 	String testInput5 = null;
 	String testInput6 = null;
 	String testInputP = null;
-	private ShoppingMenu testShopping = null;
+	private ShoppingAmerican testShopping = null;
 	private List<Item> testList = null;
 	private List<Item> testList2 = null;
 	private List<Item> testList3 = null;
@@ -45,6 +45,7 @@ public class ShoppingMenuTest {
 	private List<Item> testListP = null;
 	private ShopperModel testShopperModel = null;
 	private ShopperController testShopperController = null;
+	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		System.out.println("Running Before All for shopping menu");
@@ -58,7 +59,7 @@ public class ShoppingMenuTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
-		testShopping = new ShoppingMenu();
+		testShopping = new ShoppingAmerican();
 		testShopperModel = new ShopperModel("1","123456",20.0);
 		testShopperController = new ShopperController(testShopperModel, null);
 		
@@ -76,7 +77,7 @@ public class ShoppingMenuTest {
 		testList = new ArrayList<>();
 		Item item = new Item("005","Apple Pie",2.3,90,Region.AMERICAN);
 		testList.add(item);
-		boolean testMenu = testShopping.Menu(testScanner, testList, testShopperModel, testShopperController);
+		boolean testMenu = testShopping.ShopAmerican(testScanner, testList, testShopperModel, testShopperController);
 		assertTrue(testMenu);
 	}
 	@Test
@@ -85,9 +86,9 @@ public class ShoppingMenuTest {
 		testInput2 = "2\n";
 		testScanner = new Scanner(testInput2);
 		testList2 = new ArrayList<>();
-		Item item2 = new Item("007","Sushi Platter",22.0,50,Region.JAPANESE);
+		Item item2 = new Item("005","Apple Pie",2.3,90,Region.AMERICAN);
 		testList2.add(item2);
-		boolean testMenu = testShopping.Menu(testScanner, testList2, testShopperModel, testShopperController);
+		boolean testMenu = testShopping.ShopAmerican(testScanner, testList2, testShopperModel, testShopperController);
 		assertTrue(testMenu);
 	}
 	@Test
@@ -96,54 +97,22 @@ public class ShoppingMenuTest {
 		testInput3 = "3\n";
 		testScanner = new Scanner(testInput3);
 		testList3 = new ArrayList<>();
-		Item item3 = new Item("009","Tteokbokki",4.25,70,Region.KOREAN);
+		Item item3 = new Item("005","Apple Pie",2.3,90,Region.AMERICAN);
 		testList3.add(item3);
-		boolean testMenu = testShopping.Menu(testScanner, testList3, testShopperModel, testShopperController);
+		boolean testMenu = testShopping.ShopAmerican(testScanner, testList3, testShopperModel, testShopperController);
 		assertTrue(testMenu);
 	}
 	
-	@Test
-	@SuppressWarnings("static-access")
-	void testShoppingMenu4() {
-		testInput4 = "4\n";
-		testScanner = new Scanner(testInput4);
-		testList4 = new ArrayList<>();
-		Item item4 = new Item("009","Tteokbokki",4.25,70,Region.KOREAN);
-		testList4.add(item4);
-		boolean testMenu = testShopping.Menu(testScanner, testList4, testShopperModel, testShopperController);
-		assertTrue(testMenu);
-	}
-	@Test
-	@SuppressWarnings("static-access")
-	void testShoppingMenu5() {
-		testInput5 = "5\n";
-		testScanner = new Scanner(testInput5);
-		testList5 = new ArrayList<>();
-		Item item5 = new Item("007","Sushi Platter",22.0,50,Region.JAPANESE);
-		testList5.add(item5);
-		boolean testMenu = testShopping.Menu(testScanner, testList5, testShopperModel, testShopperController);
-		assertTrue(testMenu);
-	}
-	@Test
-	@SuppressWarnings("static-access")
-	void testShoppingMenu6() {
-		testInput6 = "6\n";
-		testScanner = new Scanner(testInput6);
-		testList6 = new ArrayList<>();
-		Item item6 = new Item("007","Sushi Platter",22.0,50,Region.JAPANESE);
-		testList5.add(item6);
-		boolean testMenu = testShopping.Menu(testScanner, testList6, testShopperModel, testShopperController);
-		assertTrue(testMenu);
-	}
+	
 	@Test
 	@SuppressWarnings("static-access")
 	void testShoppingMenuP() {
 		testInputP = "P\n";
 		testScanner = new Scanner(testInputP);
 		testListP = new ArrayList<>();
-		Item itemP = new Item("007","Sushi Platter",22.0,50,Region.JAPANESE);
+		Item itemP = new Item("005","Apple Pie",2.3,90,Region.AMERICAN);
 		testListP.add(itemP);
-		boolean testMenu = testShopping.Menu(testScanner, testListP, testShopperModel, testShopperController);
+		boolean testMenu = testShopping.ShopAmerican(testScanner, testListP, testShopperModel, testShopperController);
 		assertTrue(testMenu);
 	}
 }

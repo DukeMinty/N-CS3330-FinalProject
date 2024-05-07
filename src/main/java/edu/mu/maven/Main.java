@@ -75,7 +75,7 @@ public class Main {
 		List<Item> items = null;
 		try {
 			items = inventoryLoader.loadItemsFromFile("files/inventory.txt");
-			ShoppingMenu.Menu(scanner, items, shopperModel);
+			ShoppingMenu.Menu(scanner, items, shopperModel, shopperController);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
