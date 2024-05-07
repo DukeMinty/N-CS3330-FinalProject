@@ -48,6 +48,7 @@ public class CheckoutController {
 		view.setArrivalDate(model.getArrivalDate());
 		view.setShippingAddress(model.getShippingAddress());
 		view.setCartTotal(getCartTotal());
+		view.setCart(model.getCart());
 	}
 	
 	public CheckoutView getView() {
