@@ -3,6 +3,7 @@ package edu.mu.maven.userOptions;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+import edu.mu.maven.Main;
 import edu.mu.maven.address.Address;
 import edu.mu.maven.controller.ShopperController;
 import edu.mu.maven.inventory.Item;
@@ -35,6 +36,8 @@ public class CheckoutOptions {
 				logout = true; // logout
 			}
 		}
+		
+		Main.callMain();
 	}
 	
 	public static int menuChoices(Scanner scanner, ShopperController controller) {
