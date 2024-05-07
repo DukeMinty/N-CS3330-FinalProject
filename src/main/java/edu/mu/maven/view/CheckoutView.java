@@ -47,7 +47,7 @@ public class CheckoutView {
 		System.out.println("Order Details");
 		System.out.println("Items:");
 		printCart();
-		System.out.println("Cart Total: " + Double.toString(cartTotal));
+		System.out.println("Cart Total: $" + Double.toString(cartTotal));
 		System.out.println("Shipping to:");
 		System.out.println(shippingAddress.toString());
 		System.out.println("Arriving on:");

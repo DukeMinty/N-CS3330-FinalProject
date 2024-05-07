@@ -34,7 +34,7 @@ public class CheckoutController {
 			total += i.getPrice();
 		}
 		
-		return total;
+		return Math.floor(total*100) / 100;
 	}
 	
 	public void printCart() {

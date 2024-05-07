@@ -63,7 +63,7 @@ public class CheckoutOptions {
 	}
 	
 	public static void viewCart(CheckoutController controller, Scanner scanner) {
-		System.out.println("Your current total is " + Double.toString(controller.getCartTotal()));
+		System.out.println("Cart Total: $" + Double.toString(controller.getCartTotal()));
 		controller.printCart();
 		returnToCheckoutMenuOption(scanner);
 		
