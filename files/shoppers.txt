@@ -1,0 +1,9 @@
+shopper,password,30.0
+aaron,password,20.0
+Aaron,player,170.0
+player,player,20.0
+duke,password,20.0
+g,123456,20.0
+G,123456,20.0
+q,123456,20.0
+b,bbbbbb,30.0
