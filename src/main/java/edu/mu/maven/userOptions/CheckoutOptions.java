@@ -89,8 +89,14 @@ public class CheckoutOptions {
 			controller.getView().print();
 			
 			shopperCont.addToShopperBalance(-controller.getCartTotal());
+			clearCart(shopperCont);
 			returnToCheckoutMenuOption(scanner);
 		}
+	}
+	
+	private static void clearCart(ShopperController controller) {
+		ArrayList<Item> cart = controller.getShopperCart();
+		cart.clear();
 	}
 	
 	public static AbstractShippingStrategy getShippingStrategy(Scanner scanner) {
